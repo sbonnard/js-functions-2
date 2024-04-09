@@ -1,0 +1,1 @@
+A training for javascript's functions and methods.

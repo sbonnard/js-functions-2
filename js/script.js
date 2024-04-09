@@ -27,6 +27,12 @@ const user2 = {firstName: "Samir", lastName: "Ah", age: 22};
 const user3 = {firstName: "Loanne", lastName: "Bourdin", age: 28};
 const user4 = {firstName: "Abdel", lastName: "Dems", age: 44};
 
+/**
+ * 
+ * @param {} user_a 
+ * @param {*} user_b 
+ * @returns 
+ */
 function compareAge (user_a, user_b) {
     if(user_a.age > user_b.age) {
         return user_a
@@ -37,11 +43,13 @@ function compareAge (user_a, user_b) {
 }
 
 console.log(compareAge(user1, user4));
-console.log(compareAge(user2, user3));
+console.log(compareAge(user3, user2));
 
 /* ------------------------------------------------------*/
 
 console.info("3/ Implémentez une fonction qui retourne la valeur la plus grande d'un tableau de nombres, quelqu'en soit la taille.");
+
+
 
 console.log();
 console.log();

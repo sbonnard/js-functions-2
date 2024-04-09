@@ -69,7 +69,7 @@ console.log(getHighestValueFromArray(table2));
 console.info("4/ Implémentez une fonction qui prend en paramètre un texte et retourne un objet comptant le nombre d'occurence de chaque mot.");
 
 /**
- * Get the occurences
+ * Get the number of occurences of words from a text.
  * @param {text} text The text you want the words occurences from.
  * @returns An object listing all occurences of a word in a text.
  */
@@ -91,10 +91,16 @@ console.log(getOccurencesOfWordsInText("Mangez des pommes. C'est délicieux les 
 
 /* ------------------------------------------------------*/
 
-console.info("5/ Implémentez une fonction qui retourne une valeur entière alétoire comprise entre 2 valeurs passées en paramètres.");
+console.info("5/ Implémentez une fonction qui retourne une valeur entière aléatoire comprise entre 2 valeurs passées en paramètres.");
 
-console.log();
-console.log();
+function getRandomNumber(min, max){
+    let minValue = Math.ceil(min);
+    let maxValue = Math.floor(max);
+    return Math.floor(Math.random()*(maxValue - minValue )+1);
+}
+
+console.log(getRandomNumber(1, 10));
+console.log(getRandomNumber(80, 922));
 
 /* ------------------------------------------------------*/
 

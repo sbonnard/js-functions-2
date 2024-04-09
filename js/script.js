@@ -140,14 +140,33 @@ const newbie = {
     birthdate: "1995-02-14",
     job: "web developer",
     city: "Detroit",
-    skills: ["HTML", "CSS"]
+    skills: ["HTML", "CSS"],
+    age: getAge(this.birthdate)
 };
+
+console.log(newbie);
 
 /* ------------------------------------------------------*/
 
 console.info("7/ Implémentez une méthode retournant l'âge de Paul.");
 
-console.log();
+// Ça marche mais ce n'est pas la question. Je conserve la fonction parce qu'elle fonctionne
+
+/**
+ * Get the age of a person with his/her birthdate.
+ * @param {string} birthdate - The birthdate written in string. Ex : "2022-09-05".
+ * @returns {number} - The age.
+ */
+function getAge(birthdate) {
+    let today = new Date()
+    let birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear()
+    return age
+}
+
+// console.log(getAge("1995-02-14"));
+
+// Fin de la fonction inutile.
 
 /* ------------------------------------------------------*/
 

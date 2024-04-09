@@ -5,8 +5,12 @@
 
 console.info("1/ Implémentez une fonction qui prend en paramètre les dimensions de 2 côtés d'un triangle rectangle et retourne la dimension de l'hypoténuse.");
 
-console.log();
-console.log();
+function getHypotenuseOfTriangle(a, b) {
+    return Math.hypot(a, b)
+}
+
+console.log(getHypotenuseOfTriangle(2, 3));
+console.log(getHypotenuseOfTriangle(3, 4));
 
 /* ------------------------------------------------------*/
 

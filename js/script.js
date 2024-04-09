@@ -22,10 +22,10 @@ console.log(getHypotenuseOfTriangle(3, 4));
 
 console.info("2/ Implémentez une fonction qui retourne le nom et le prénom du plus âgé de 2 utilisateurs passés en paramètres parmi les 4 ci-dessous.");
 
-const user1 = {firstName: "Paul", lastName: "Rick", age: 35};
-const user2 = {firstName: "Samir", lastName: "Ah", age: 22};
-const user3 = {firstName: "Loanne", lastName: "Bourdin", age: 28};
-const user4 = {firstName: "Abdel", lastName: "Dems", age: 44};
+const user1 = { firstName: "Paul", lastName: "Rick", age: 35 };
+const user2 = { firstName: "Samir", lastName: "Ah", age: 22 };
+const user3 = { firstName: "Loanne", lastName: "Bourdin", age: 28 };
+const user4 = { firstName: "Abdel", lastName: "Dems", age: 44 };
 
 /**
  * Compares the age of two users and gives the older one.
@@ -33,8 +33,8 @@ const user4 = {firstName: "Abdel", lastName: "Dems", age: 44};
  * @param {object} user_b an object with several properties.
  * @returns {object} Older user.
  */
-function compareAge (user_a, user_b) {
-    if(user_a.age > user_b.age) {
+function compareAge(user_a, user_b) {
+    if (user_a.age > user_b.age) {
         return user_a
     }
     else {
@@ -68,13 +68,26 @@ console.log(getHighestValueFromArray(table2));
 
 console.info("4/ Implémentez une fonction qui prend en paramètre un texte et retourne un objet comptant le nombre d'occurence de chaque mot.");
 
-function getNumberOfWordsInText(text) {
-   const textObject = {text};
-    return text.split(' ').length
+/**
+ * Get the occurences
+ * @param {text} text The text you want the words occurences from.
+ * @returns An object listing all occurences of a word in a text.
+ */
+function getOccurencesOfWordsInText(text) {
+    const dico = {};
+    for (let words of text.split(/[^a-zA-Zéèàê]/)) {
+        if (words != "") {
+           if(dico[words] != undefined) {
+                dico[words] += 1;
+            } 
+            else {dico[words] = 1};
+        }
+    }
+    return dico
 }
 
-console.log(getNumberOfWordsInText("Je suis un ananas."));
-console.log(getNumberOfWordsInText("Mangez des pommes. C'est délicieux les pommes."));
+console.log(getOccurencesOfWordsInText("Je suis un ananas. Les ananas c'est trop cool. Ah les ananas ! Je pourrais parler d'ananas pendant des heures"));
+console.log(getOccurencesOfWordsInText("Mangez des pommes. C'est délicieux les pommes."));
 
 /* ------------------------------------------------------*/
 

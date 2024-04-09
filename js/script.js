@@ -28,10 +28,10 @@ const user3 = { firstName: "Loanne", lastName: "Bourdin", age: 28 };
 const user4 = { firstName: "Abdel", lastName: "Dems", age: 44 };
 
 /**
- * Compares the age of two users and gives the older one.
+ * Compares the age of two users and gives the oldest one.
  * @param {object} user_a an object with several properties.
  * @param {object} user_b an object with several properties.
- * @returns {object} Older user.
+ * @returns {object} Oldest user.
  */
 function compareAge(user_a, user_b) {
     if (user_a.age > user_b.age) {
@@ -77,10 +77,10 @@ function getOccurencesOfWordsInText(text) {
     const dico = {};
     for (let words of text.split(/[^a-zA-Zéèàê]/)) {
         if (words != "") {
-           if(dico[words] != undefined) {
+            if (dico[words] != undefined) {
                 dico[words] += 1;
-            } 
-            else {dico[words] = 1};
+            }
+            else { dico[words] = 1 };
         }
     }
     return dico
@@ -93,10 +93,16 @@ console.log(getOccurencesOfWordsInText("Mangez des pommes. C'est délicieux les 
 
 console.info("5/ Implémentez une fonction qui retourne une valeur entière aléatoire comprise entre 2 valeurs passées en paramètres.");
 
-function getRandomNumber(min, max){
+/**
+ * get a random number between two values.
+ * @param {number} min A number smaller than max.
+ * @param {number} max A number higher than min.
+ * @returns {number} A random number between min and max.
+ */
+function getRandomNumber(min, max) {
     let minValue = Math.ceil(min);
     let maxValue = Math.floor(max);
-    return Math.floor(Math.random()*(maxValue - minValue )+1);
+    return Math.floor(Math.random() * ((maxValue + 1) - minValue) + 1);
 }
 
 console.log(getRandomNumber(1, 10));
@@ -105,9 +111,24 @@ console.log(getRandomNumber(80, 922));
 /* ------------------------------------------------------*/
 
 console.info("6/ Implémentez une fonction qui retourne une chaîne de caractère aléatoire composée de chiffres et de lettres en majuscule et minuscule, de la taille passée en paramètre.");
+/**
+ * Generates a random string out of letters and numbers.
+ * @param {number} length The length of the string generated.
+ * @returns {string} The random string.
+ */
+function generateRandomString(length) {
+    let result = '';
+    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    let counter = 0;
+    while (counter < length) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+        counter += 1;
+    }
+    return result
+}
 
-console.log();
-console.log();
+console.log(generateRandomString(25));
+console.log(generateRandomString(5));
 
 /* ------------------------------------------------------*/
 

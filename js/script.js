@@ -28,10 +28,10 @@ const user3 = {firstName: "Loanne", lastName: "Bourdin", age: 28};
 const user4 = {firstName: "Abdel", lastName: "Dems", age: 44};
 
 /**
- * 
- * @param {} user_a 
- * @param {*} user_b 
- * @returns 
+ * Compares the age of two users and gives the older one.
+ * @param {object} user_a an object with several properties.
+ * @param {object} user_b an object with several properties.
+ * @returns {object} Older user.
  */
 function compareAge (user_a, user_b) {
     if(user_a.age > user_b.age) {
@@ -49,17 +49,32 @@ console.log(compareAge(user3, user2));
 
 console.info("3/ Implémentez une fonction qui retourne la valeur la plus grande d'un tableau de nombres, quelqu'en soit la taille.");
 
+const table = [6546, 664, 4988, 9666, 8956, 63]
+const table2 = [65458726, 7664, 40.988, 964266, 8956, 63]
 
+/**
+ * Get the highest value from an array.
+ * @param {array} array An array composed of numbers only.
+ * @returns {number} The highest number from the array.
+ */
+function getHighestValueFromArray(array) {
+    return Math.max(...array)
+}
 
-console.log();
-console.log();
+console.log(getHighestValueFromArray(table));
+console.log(getHighestValueFromArray(table2));
 
 /* ------------------------------------------------------*/
 
 console.info("4/ Implémentez une fonction qui prend en paramètre un texte et retourne un objet comptant le nombre d'occurence de chaque mot.");
 
-console.log();
-console.log();
+function getNumberOfWordsInText(text) {
+   const textObject = {text};
+    return text.split(' ').length
+}
+
+console.log(getNumberOfWordsInText("Je suis un ananas."));
+console.log(getNumberOfWordsInText("Mangez des pommes. C'est délicieux les pommes."));
 
 /* ------------------------------------------------------*/
 

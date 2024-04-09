@@ -5,6 +5,12 @@
 
 console.info("1/ Implémentez une fonction qui prend en paramètre les dimensions de 2 côtés d'un triangle rectangle et retourne la dimension de l'hypoténuse.");
 
+/**
+ * Get the hypotenuse of a rectangle triangle.
+ * @param {number} a Segment length of a rectangle triangle.
+ * @param {number} b Segment length of a rectangle triangle.
+ * @returns {number} The hypotenuse of the triangle.
+ */
 function getHypotenuseOfTriangle(a, b) {
     return Math.hypot(a, b)
 }
@@ -21,8 +27,17 @@ const user2 = {firstName: "Samir", lastName: "Ah", age: 22};
 const user3 = {firstName: "Loanne", lastName: "Bourdin", age: 28};
 const user4 = {firstName: "Abdel", lastName: "Dems", age: 44};
 
-console.log();
-console.log();
+function compareAge (user_a, user_b) {
+    if(user_a.age > user_b.age) {
+        return user_a
+    }
+    else {
+        return user_b
+    }
+}
+
+console.log(compareAge(user1, user4));
+console.log(compareAge(user2, user3));
 
 /* ------------------------------------------------------*/
 

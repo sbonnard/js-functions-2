@@ -133,23 +133,6 @@ console.log(generateRandomString(5));
 /* ------------------------------------------------------*/
 
 console.info("Pour les questions suivantes enrichissez l'objet 'newbie' ci-dessous.");
-
-const newbie = {
-    firstName: "Paul",
-    lastName: "Bismuth",
-    birthdate: "1995-02-14",
-    job: "web developer",
-    city: "Detroit",
-    skills: ["HTML", "CSS"],
-    age: getAge(this.birthdate)
-};
-
-console.log(newbie);
-
-/* ------------------------------------------------------*/
-
-console.info("7/ Implémentez une méthode retournant l'âge de Paul.");
-
 // Ça marche mais ce n'est pas la question. Je conserve la fonction parce qu'elle fonctionne
 
 /**
@@ -164,7 +147,29 @@ function getAge(birthdate) {
     return age
 }
 
-// console.log(getAge("1995-02-14"));
+const newbie = {
+    firstName: "Paul",
+    lastName: "Bismuth",
+    birthdate: "1995-02-14",
+    job: "web developer",
+    city: "Detroit",
+    skills: ["HTML", "CSS"],
+    age: function () {
+        this.getAge
+    },
+    getAge : function(){
+        return getAge(this.birthdate)
+    }
+};
+
+console.log(newbie);
+
+/* ------------------------------------------------------*/
+
+console.info("7/ Implémentez une méthode retournant l'âge de Paul.");
+
+
+console.log(newbie.getAge());
 
 // Fin de la fonction inutile.
 

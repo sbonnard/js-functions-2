@@ -55,6 +55,9 @@ const characters = [
 
 let attackerScore = 0;
 let defenderScore = 0;
+let i = 0;
+let chall = getChallengers(characters);
+
 
 /**
  * Get random attack score from character stats
@@ -98,13 +101,32 @@ function getChallengers(array) {
     while (challengers.length < 2) {
         challengers.push(getRandomArrayValue(array));
         if (challengers[0] === challengers[1]) {
-            challengers.pop()
+            challengers.pop();
         }
     }
     return challengers
 }
 
-let chall = getChallengers(characters);
+// //Pour supprimer un personnage si sa vie atteint 0.
+// if (characters[i].life <= 0) {
+//     characters.filter[i]
+// }
+
+function launchBattleRoyal(array) {
+    let winner;
+    while (characters[i].life > 0) {
+        getChallengers(array);
+        getAttackScore();
+        getDefenseScore();
+        getFightResult()
+        if (characters[i].life <= 0) {
+            characters.filter[i]
+        }
+    }
+    return winner
+}
+
 console.log(getFightResult(chall[0], chall[1]));
+console.log(launchBattleRoyal(characters));
 
 console.table(characters);

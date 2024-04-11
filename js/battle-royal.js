@@ -25,7 +25,7 @@ const characters = [
         xp: 7,
         weapon: 9,
         shield: 8,
-        alive : true
+        alive: true
     },
     {
         name: 'Chun-Li',
@@ -33,7 +33,7 @@ const characters = [
         xp: 7,
         weapon: 8,
         shield: 9,
-        alive : true
+        alive: true
     },
     {
         name: 'Blanca',
@@ -41,7 +41,7 @@ const characters = [
         xp: 4,
         weapon: 3,
         shield: 6,
-        alive : true
+        alive: true
     },
     {
         name: 'Ken',
@@ -49,7 +49,7 @@ const characters = [
         xp: 4,
         weapon: 6,
         shield: 3,
-        alive : true
+        alive: true
     }
 ];
 
@@ -61,7 +61,7 @@ console.table(characters);
  * @returns {number} - Random attack score
  */
 function getAttackScore(attacker) {
-    return getRandomValue(attacker.weapon) + attacker.xp;
+    return attackerScore = getRandomValue(attacker.weapon) + attacker.xp;
 }
 
 /**
@@ -70,29 +70,35 @@ function getAttackScore(attacker) {
  * @returns {number} - Random defense score
  */
 function getDefenseScore(defender) {
-    return getRandomValue(defender.shield) + defender.xp;
+    return defenderScore = getRandomValue(defender.shield) + defender.xp;
 }
 
-function getFightResult (attacker, defender) {
-if (getAttackScore(attacker) > getDefenseScore(defender)) {
-    defender.life -= getAttackScore(attacker) - getDefenseScore(defender);
-}
-if (getAttackScore(attacker) < getDefenseScore(defender)) {
-    
-}
-return defender.life
+/**
+ * Get the defender's life after a fight comparing the attacker's score and the defender's one.
+ * @param {object} attacker - An object representing a character.
+ * @param {object} defender - An object representing a character.
+ * @returns {number} - The life of the defender after the fight.
+ */
+function getFightResult(attacker, defender) {
+    if (getAttackScore(attacker) > getDefenseScore(defender)) {
+        defender.life -= attackerScore - defenderScore;
+    }
+    console.log(attacker, attackerScore, defender, defenderScore);
+    return defender.life
 };
 
 const attacker = getRandomArrayValue(characters);
 const defender = getRandomArrayValue(characters);
+let attackerScore = 0;
+let defenderScore = 0;
+
+// console.log(
+//     attacker,
+//     getAttackScore(attacker),
+//     defender, 
+//     getDefenseScore(defender),
+// );
 
 console.log(
-    attacker,
-    getAttackScore(attacker)
+    getFightResult(attacker, defender)
 );
-
-console.log(
-    defender, getDefenseScore(defender)
-);
-
-console.log(getFightResult(attacker, defender));

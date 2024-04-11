@@ -18,7 +18,7 @@ function getRandomArrayValue(array) {
     return array[getRandomValue(array.length - 1)];
 }
 
-const characters = [
+let characters = [
     {
         name: 'Zangief',
         life: 50,
@@ -45,7 +45,7 @@ const characters = [
     },
     {
         name: 'Ken',
-        life: 0,
+        life: 1,
         xp: 4,
         weapon: 7,
         shield: 5,
@@ -53,8 +53,6 @@ const characters = [
     }
 ];
 
-let attackerScore = 0;
-let defenderScore = 0;
 let i = 0;
 let chall = getChallengers(characters);
 
@@ -65,7 +63,7 @@ let chall = getChallengers(characters);
  * @returns {number} - Random attack score
 */
 function getAttackScore(attacker) {
-    return attackerScore = getRandomValue(attacker.weapon) + attacker.xp;
+    return getRandomValue(attacker.weapon) + attacker.xp;
 }
 
 /**
@@ -74,7 +72,7 @@ function getAttackScore(attacker) {
  * @returns {number} - Random defense score
 */
 function getDefenseScore(defender) {
-    return defenderScore = getRandomValue(defender.shield) + defender.xp;
+    return getRandomValue(defender.shield) + defender.xp;
 }
 
 /**
@@ -84,7 +82,9 @@ function getDefenseScore(defender) {
  * @returns {number} - The life of the defender after the fight.
 */
 function getFightResult(attacker, defender) {
-    if (getAttackScore(attacker) > getDefenseScore(defender)) {
+    let attackerScore = getAttackScore(attacker);
+    let defenderScore = getDefenseScore(defender);
+    if (attackerScore > defenderScore) {
         defender.life -= attackerScore - defenderScore;
     }
     console.log(attacker, attackerScore, defender, defenderScore)
@@ -95,7 +95,7 @@ function getFightResult(attacker, defender) {
  * Get both challengers for a round. Index[0] defines the attacker and index[1] defines the defender in every other functions.
  * @param {array} array - The array you want the challengers (objects) to come from.
  * @returns {array} - The new array created by the function with the two challengers (objects).
- */
+*/
 function getChallengers(array) {
     const challengers = [];
     while (challengers.length < 2) {
@@ -107,29 +107,32 @@ function getChallengers(array) {
     return challengers
 }
 
+
+function isStillAlive(character) {
+    return character.life > 0;
+  }
+  
+characters = characters.filter(isStillAlive);
+
 function ejectChallenger(array) {
 if (array[i].life <= 0) {
-    array.filter[i]
+    console.filter(array[i])
 }
 return array
 }
-
 console.log(ejectChallenger(characters));
-    
-    function launchBattleRoyal(array) {
-        let winner;
-        while (array.length > 1) {
-            getChallengers(array);
-            getAttackScore(attackerScore);
-            getDefenseScore(defenderScore);
-            getFightResult(chall[0], chall[1])
-            console.table(characters);
-        }
-        return winner
+
+function launchBattleRoyal(array) {
+    let winner;
+    while (array.length > 1) {
+        getChallengers(array);
+        getFightResult(chall[0], chall[1])
+        console.table(characters);
     }
-    
-    
-    console.log(getFightResult(chall[0], chall[1]));
-    // console.log(launchBattleRoyal(characters));
-    console.table(characters)
-    
+    return winner
+}
+
+
+console.log(getFightResult(chall[0], chall[1]));
+// console.log(launchBattleRoyal(characters));
+console.table(characters)

@@ -45,7 +45,7 @@ const characters = [
     },
     {
         name: 'Ken',
-        life: 50,
+        life: 0,
         xp: 4,
         weapon: 7,
         shield: 5,
@@ -107,26 +107,29 @@ function getChallengers(array) {
     return challengers
 }
 
-// //Pour supprimer un personnage si sa vie atteint 0.
-// if (characters[i].life <= 0) {
-//     characters.filter[i]
-// }
-
-function launchBattleRoyal(array) {
-    let winner;
-    while (characters[i].life > 0) {
-        getChallengers(array);
-        getAttackScore();
-        getDefenseScore();
-        getFightResult()
-        if (characters[i].life <= 0) {
-            characters.filter[i]
-        }
-    }
-    return winner
+function ejectChallenger(array) {
+if (array[i].life <= 0) {
+    array.filter[i]
+}
+return array
 }
 
-console.log(getFightResult(chall[0], chall[1]));
-console.log(launchBattleRoyal(characters));
-
-console.table(characters);
+console.log(ejectChallenger(characters));
+    
+    function launchBattleRoyal(array) {
+        let winner;
+        while (array.length > 1) {
+            getChallengers(array);
+            getAttackScore(attackerScore);
+            getDefenseScore(defenderScore);
+            getFightResult(chall[0], chall[1])
+            console.table(characters);
+        }
+        return winner
+    }
+    
+    
+    console.log(getFightResult(chall[0], chall[1]));
+    // console.log(launchBattleRoyal(characters));
+    console.table(characters)
+    

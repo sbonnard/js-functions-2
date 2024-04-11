@@ -53,6 +53,8 @@ const characters = [
     }
 ];
 
+console.table(characters);
+
 /**
  * Get random attack score from character stats
  * @param {object} attacker - An object representing a character
@@ -62,12 +64,33 @@ function getAttackScore(attacker) {
     return getRandomValue(attacker.weapon) + attacker.xp;
 }
 
-console.table(characters);
+/**
+ * Get random defense score from character stats
+ * @param {object} defender - An object representing a character
+ * @returns {number} - Random defense score
+ */
+function getDefenseScore(defender) {
+    return getRandomValue(defender.shield) + defender.xp;
+}
+
+function getFightResult (attacker, defender) {
+if (attacker.weapon > defender.shield) {
+    defender.life -= attacker.weapon - defender.shield;
+}
+return defender.life
+};
+
 
 const attacker = getRandomArrayValue(characters);
-// const defender;
+const defender = getRandomArrayValue(characters);
 
 console.log(
     attacker,
     getAttackScore(attacker)
 );
+
+console.log(
+    defender, getDefenseScore(defender)
+);
+
+console.log(getFightResult());

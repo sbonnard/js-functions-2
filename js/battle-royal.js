@@ -80,10 +80,10 @@ function getDefenseScore(defender) {
  * @returns {number} - The life of the defender after the fight.
  */
 function getFightResult(attacker, defender) {
-    if (getAttackScore(attacker) > getDefenseScore(defender)) {
+    if (getAttackScore(attacker) > getDefenseScore(defender) && attacker != defender) {
         defender.life -= attackerScore - defenderScore;
     }
-    console.log(attacker, attackerScore, defender, defenderScore);
+    console.log(attacker, attackerScore, defender, defenderScore)
     return defender.life
 };
 
@@ -91,13 +91,6 @@ const attacker = getRandomArrayValue(characters);
 const defender = getRandomArrayValue(characters);
 let attackerScore = 0;
 let defenderScore = 0;
-
-// console.log(
-//     attacker,
-//     getAttackScore(attacker),
-//     defender, 
-//     getDefenseScore(defender),
-// );
 
 console.log(
     getFightResult(attacker, defender)

@@ -39,27 +39,28 @@ const characters = [
         name: 'Blanca',
         life: 50,
         xp: 4,
-        weapon: 3,
-        shield: 6,
+        weapon: 6,
+        shield: 7,
         alive: true
     },
     {
         name: 'Ken',
         life: 50,
         xp: 4,
-        weapon: 6,
-        shield: 3,
+        weapon: 7,
+        shield: 5,
         alive: true
     }
 ];
 
-console.table(characters);
+let attackerScore = 0;
+let defenderScore = 0;
 
 /**
  * Get random attack score from character stats
  * @param {object} attacker - An object representing a character
  * @returns {number} - Random attack score
- */
+*/
 function getAttackScore(attacker) {
     return attackerScore = getRandomValue(attacker.weapon) + attacker.xp;
 }
@@ -68,7 +69,7 @@ function getAttackScore(attacker) {
  * Get random defense score from character stats
  * @param {object} defender - An object representing a character
  * @returns {number} - Random defense score
- */
+*/
 function getDefenseScore(defender) {
     return defenderScore = getRandomValue(defender.shield) + defender.xp;
 }
@@ -78,20 +79,32 @@ function getDefenseScore(defender) {
  * @param {object} attacker - An object representing a character.
  * @param {object} defender - An object representing a character.
  * @returns {number} - The life of the defender after the fight.
- */
+*/
 function getFightResult(attacker, defender) {
-    if (getAttackScore(attacker) > getDefenseScore(defender) && attacker != defender) {
+    if (getAttackScore(attacker) > getDefenseScore(defender)) {
         defender.life -= attackerScore - defenderScore;
     }
     console.log(attacker, attackerScore, defender, defenderScore)
     return defender.life
 };
 
-const attacker = getRandomArrayValue(characters);
-const defender = getRandomArrayValue(characters);
-let attackerScore = 0;
-let defenderScore = 0;
+/**
+ * Get both challengers for a round. Index[0] defines the attacker and index[1] defines the defender in every other functions.
+ * @param {array} array - The array you want the challengers (objects) to come from.
+ * @returns {array} - The new array created by the function with the two challengers (objects).
+ */
+function getChallengers(array) {
+    const challengers = [];
+    while (challengers.length < 2) {
+        challengers.push(getRandomArrayValue(array));
+        if (challengers[0] === challengers[1]) {
+            challengers.pop()
+        }
+    }
+    return challengers
+}
 
-console.log(
-    getFightResult(attacker, defender)
-);
+let chall = getChallengers(characters);
+console.log(getFightResult(chall[0], chall[1]));
+
+console.table(characters);

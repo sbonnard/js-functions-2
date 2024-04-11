@@ -1,6 +1,6 @@
-#Champ de bataille
+####Champ de bataille
 
-Nous voulons créer un jeu faisant combattre aléatoirement 4 personnages.
+###Nous voulons créer un jeu faisant combattre aléatoirement 4 personnages.
 
 Chaque personnage possède :
 - un nom ;

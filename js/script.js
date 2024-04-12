@@ -136,61 +136,83 @@ console.log(generateRandomString(5));
 
 console.info("Pour les questions suivantes enrichissez l'objet 'newbie' ci-dessous.");
 
+
 const newbie = {
     firstName: "Paul",
     lastName: "Bismuth",
-    birthdate: "1995-02-14",
+    birthdate: "1995-04-11",
     job: "web developer",
     city: "Detroit",
     skills: ["HTML", "CSS"],
-    age: function () {
-        let today = new Date()
+
+    /**
+     * Get age from birthdate object.
+     * @returns {number} age of the object
+     */
+    getAge: function () {
         let birthDate = new Date(this.birthdate);
-        let age = today.getFullYear() - birthDate.getFullYear()
-        console.log(this.age);
+
+        // Is the birthdate a valid date ?
+        if (!(birthDate instanceof Date) || isNaN(birthDate)) return;
+
+        let today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        if (
+            today.getMonth() < birthDate.getMonth()
+            ||
+            (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())
+        ) {
+            age--;
+        }
+        return age;
+    },
+
+    /**
+     * Add a new skill in skills list.
+     * @param {string} skill - New skill name
+     */
+    addSkill: function (skill) {
+        this.skills.push(skill);
+    },
+
+    /**
+     * Get text introduction for object.
+     * @returns {string} user presentation.
+     */
+    introduceMySelf: function () {
+        return `Je m'appelle ${this.lastName}, ${this.firstName}, j'ai ${this.getAge()} ans. Je vis à ${this.city}. Je suis ${this.job} et mes compétences sont ${this.readSkills()}.`;
     }
 };
-
-console.log(newbie);
 
 /* ------------------------------------------------------*/
 
 console.info("7/ Implémentez une méthode retournant l'âge de Paul.");
 
-// console.log(newbie.age);
-
-// Ça marche mais ce n'est pas la question. Je conserve la fonction parce qu'elle fonctionne
-
-/**
- * Get the age of a person with his/her birthdate.
- * @param {string} birthdate - The birthdate written in string. Ex : "2022-09-05".
- * @returns {number} - The age.
- */
-function getAge(birthdate) {
-    let today = new Date()
-    let birthDate = new Date(birthdate);
-    let age = today.getFullYear() - birthDate.getFullYear()
-    return age
-}
-
-// console.log(getAge("1995-02-14"));
-
-// Fin de la fonction inutile.
+console.log(newbie.getAge());
 
 /* ------------------------------------------------------*/
 
 console.info("8/ Implémentez une méthode retournant un texte listant les compétences de Paul séparées par des virgules.");
 
-console.log();
+/**
+ * Reads his/her/their skills.
+ * @returns {string} skills in string.
+ */
+newbie.readSkills = function () {
+    return this.skills.join(", ");
+};
+
+console.log(newbie.readSkills());
 
 /* ------------------------------------------------------*/
 
 console.info("9/ Implémentez une méthode qui ajoute à Paul une compétence passée en paramètre.");
 console.info("Ajoutez la compétence Javascript et utilisez la méthode précédente pour vous assurer du résultat.");
 
-console.log();
+newbie.addSkill("JavaScript");
+console.log(newbie.readSkills());
 
 /* ------------------------------------------------------*/
 
 console.info("10/ Implémentez une méthode qui fait parler Paul pour qu'il se présente avec toutes ses caractéristiques. (Nom, prénom, âge, où il vit, son métier, ...)");
-console.log();
+console.log(newbie.introduceMySelf());

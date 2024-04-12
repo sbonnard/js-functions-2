@@ -24,7 +24,6 @@ let characters = [
         xp: 7,
         weapon: 9,
         shield: 8,
-        alive: true
     },
     {
         name: 'Chun-Li',
@@ -32,7 +31,6 @@ let characters = [
         xp: 7,
         weapon: 8,
         shield: 8,
-        alive: true
     },
     {
         name: 'Blanca',
@@ -40,7 +38,6 @@ let characters = [
         xp: 4,
         weapon: 6,
         shield: 7,
-        alive: true
     },
     {
         name: 'Ken',
@@ -48,7 +45,6 @@ let characters = [
         xp: 4,
         weapon: 7,
         shield: 5,
-        alive: true
     }
 ];
 

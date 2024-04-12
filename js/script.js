@@ -73,21 +73,23 @@ console.info("4/ Implémentez une fonction qui prend en paramètre un texte et r
  * @param {text} text The text you want the words occurences from.
  * @returns An object listing all occurences of a word in a text.
  */
-function getOccurencesOfWordsInText(text) {
+function countOccurencesOfWordsInText(text) {
     const dico = {};
-    for (let words of text.split(/[^a-zA-Zéèàê]/)) {
+    for (let words of text.split(/[^a-zA-Zéèàêùë]/)) {
         if (words != "") {
             if (dico[words] != undefined) {
                 dico[words] += 1;
             }
-            else { dico[words] = 1 };
+            else {
+                dico[words] = 1
+            };
         }
     }
     return dico
 }
 
-console.log(getOccurencesOfWordsInText("Je suis un ananas. Les ananas c'est trop cool. Ah les ananas ! Je pourrais parler d'ananas pendant des heures"));
-console.log(getOccurencesOfWordsInText("Mangez des pommes. C'est délicieux les pommes."));
+console.log(countOccurencesOfWordsInText("Je suis un ananas. Les ananas c'est trop cool. Ah les ananas ! Je pourrais parler d'ananas pendant des heures"));
+console.log(countOccurencesOfWordsInText("Mangez des pommes. C'est délicieux les pommes."));
 
 /* ------------------------------------------------------*/
 
@@ -141,7 +143,12 @@ const newbie = {
     job: "web developer",
     city: "Detroit",
     skills: ["HTML", "CSS"],
-    age: getAge(this.birthdate)
+    age: function () {
+        let today = new Date()
+        let birthDate = new Date(this.birthdate);
+        let age = today.getFullYear() - birthDate.getFullYear()
+        console.log(this.age);
+    }
 };
 
 console.log(newbie);
@@ -149,6 +156,8 @@ console.log(newbie);
 /* ------------------------------------------------------*/
 
 console.info("7/ Implémentez une méthode retournant l'âge de Paul.");
+
+// console.log(newbie.age);
 
 // Ça marche mais ce n'est pas la question. Je conserve la fonction parce qu'elle fonctionne
 

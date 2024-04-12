@@ -31,7 +31,7 @@ let characters = [
         life: 50,
         xp: 7,
         weapon: 8,
-        shield: 9,
+        shield: 8,
         alive: true
     },
     {
@@ -51,6 +51,7 @@ let characters = [
         alive: true
     }
 ];
+
 
 /**
  * Get random attack score from character stats
@@ -90,44 +91,84 @@ function getChallengers(charactersList) {
 /**
  * fight between two characters and define the winner and the loser.
  * @param {array} challengers the first element in the array is the attacker and the second is the defender. they are objects. 
- * @returns {object}
+ * @returns {string} A text to explain the fight.
  */
 function fight(challengers) {
     const attacker = challengers[0];
     const defender = challengers[1];
 
-    let winner;
-    let loser;
+    let txt = '';
+
     const attackPoints = getAttackScore(attacker);
-    const defensePoints = getDefenseScore(defender);
-    if (attackPoints > defensePoints) {
-        winner = attacker;
-        loser = defender;
+    if (attackPoints > getDefenseScore(defender)) {
         defender.life -= attackPoints;
 
-        console.log(`${attacker.name} attaque ${defender.name} et a gagné le combat en lui infligeant ${attackPoints} points de dégats.`);
+        txt += `${attacker.name} attaque ${defender.name} et a gagné le combat en lui infligeant ${attackPoints} points de dégats.`;
+
+        if (!isAlive(defender)) {
+            txt += ` ${defender.name} est mort 💀`
+        }
     }
     else {
-        loser = attacker;
-        winner = defender;
-    
-        console.log(`${defender.name} a contré l'attaque de ${attacker.name}.`);
+        txt += `${defender.name} a contré l'attaque de ${attacker.name}.`;
     }
 
-    return {
-        "winner": winner.name,
-        "loser": loser.name,
-        attackPoints,
-        defensePoints,
-        "attacker life": attacker.life,
-        "defender life": defender.life,
-    };
-
+    return txt;
 }
 
-console.table(characters);
+/**
+ * Test if a character is alive and return true if he is
+ * @param {object} character -The character's object
+ * @returns {boolean} -True if alive, false if dead
+ */
+function isAlive(character) {
+    return character.life > 0;
+}
 
-let challengers = getChallengers(characters);
-console.table(challengers);
-let fightRound = fight(challengers);
-console.table(fightRound);
+
+/**
+ * Delete a character from is array if he is out of hp
+ * @param {array} charactersArray -The characters array
+ * @returns {array} -The new array without characters out of hp
+ */
+function burnTheDead(charactersArray) {
+    return charactersArray.filter(isAlive);
+}
+
+/**
+ * Fight until only 1 remains
+ * @param {array} characterArray -The array with all our characters
+ * @return {object} -The winner's object
+ */
+function startBattleRoyal(characterArray) {
+    while (characterArray.length > 1) {
+        const challengers = getChallengers(characterArray);
+        console.log(fight(challengers));
+        characterArray = burnTheDead(characterArray);
+    }
+    return characterArray[0];
+}
+
+function startBattleRoyalRec(characterArray) {
+    if (characterArray.length === 1) return characterArray[0];
+
+    console.log(fight(getChallengers(characterArray)));
+    return startBattleRoyalRec(burnTheDead(characterArray));
+}
+
+function startBattleRoyalInterval(characterArray) {
+
+    const timer = setInterval(() => {
+        const challengers = getChallengers(characterArray);
+        console.log(fight(challengers));
+        characterArray = burnTheDead(characterArray);
+
+        if (characterArray.length === 1) {
+            clearInterval(timer);
+            console.table(characterArray[0]);
+        }
+    }, 1000);
+}
+
+startBattleRoyalInterval(characters);
+// console.table(startBattleRoyalInterval(characters));
